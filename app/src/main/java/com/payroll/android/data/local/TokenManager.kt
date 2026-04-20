@@ -19,6 +19,8 @@ class TokenManager @Inject constructor(
     companion object {
         private val KEY_TOKEN = stringPreferencesKey("access_token")
         private val KEY_USERNAME = stringPreferencesKey("username")
+        private val KEY_ROLE = stringPreferencesKey("user_role")
+        private val KEY_FULLNAME = stringPreferencesKey("user_fullname")
     }
 
     val token: Flow<String?> = context.dataStore.data.map { it[KEY_TOKEN] }
@@ -31,6 +33,17 @@ class TokenManager @Inject constructor(
     suspend fun saveUsername(username: String) {
         context.dataStore.edit { it[KEY_USERNAME] = username }
     }
+
+    suspend fun saveRole(role: String) {
+        context.dataStore.edit { it[KEY_ROLE] = role }
+    }
+
+    suspend fun saveFullName(name: String) {
+        context.dataStore.edit { it[KEY_FULLNAME] = name }
+    }
+
+    fun getRole(): Flow<String?> = context.dataStore.data.map { it[KEY_ROLE] }
+    fun getFullName(): Flow<String?> = context.dataStore.data.map { it[KEY_FULLNAME] }
 
     suspend fun clear() {
         context.dataStore.edit { it.clear() }

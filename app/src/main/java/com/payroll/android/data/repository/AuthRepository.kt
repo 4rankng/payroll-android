@@ -17,6 +17,8 @@ class AuthRepositoryImpl @Inject constructor(
             val response = api.login(LoginRequest(username, password))
             tokenManager.saveToken(response.accessToken)
             tokenManager.saveUsername(username)
+            response.user.role?.let { tokenManager.saveRole(it) }
+            response.user.fullname?.let { tokenManager.saveFullName(it) }
             Result.success(response)
         } catch (e: Exception) {
             Result.failure(e)

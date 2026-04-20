@@ -18,7 +18,8 @@ data class UserDto(
     val id: Int,
     val username: String,
     val fullname: String?,
-    val email: String?
+    val email: String?,
+    val role: String? = null
 )
 
 data class EmployeeProfile(
