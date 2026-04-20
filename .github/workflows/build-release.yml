@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      api_base_url:
+        description: 'API Base URL (e.g. https://api.example.com/api/v1)'
+        required: false
+        default: ''
 
 jobs:
   build:
@@ -24,7 +29,9 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build Debug APK
-        run: gradle assembleDebug
+        run: gradle assembleDebug -PAPI_BASE_URL="${{ github.event.inputs.api_base_url || vars.API_BASE_URL || 'http://10.0.2.2:8080/api/v1' }}"
+        env:
+          API_BASE_URL: ${{ github.event.inputs.api_base_url || vars.API_BASE_URL || 'http://10.0.2.2:8080/api/v1' }}
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
@@ -47,14 +54,13 @@ jobs:
           body: |
             Build from commit ${{ github.sha }}
             Date: ${{ steps.info.outputs.date }}
+            API: ${{ github.event.inputs.api_base_url || vars.API_BASE_URL || 'http://10.0.2.2:8080/api/v1' }}
 
             ## Cài đặt
             1. Tải file APK bên dưới
             2. Mở trên điện thoại Android
             3. Cho phép cài đặt từ nguồn không xác định
             4. Cài đặt và sử dụng
-
-            **API Server**: cấu hình tại `NetworkModule.kt`
           files: app/build/outputs/apk/debug/*.apk
           draft: false
           prerelease: false

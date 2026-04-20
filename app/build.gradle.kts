@@ -18,14 +18,16 @@ android {
         versionName = "1.0.0"
     }
 
+    defaultConfig {
+        val apiUrl = project.findProperty("API_BASE_URL") as? String
+            ?: "http://10.0.2.2:8080/api/v1"
+        buildConfigField("String", "API_BASE_URL", "\"$apiUrl\"")
+    }
+
     buildTypes {
-        debug {
-            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080/api/v1\"")
-        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            buildConfigField("String", "API_BASE_URL", "\"https://yourdomain.com/api/v1\"")
         }
     }
     compileOptions {
