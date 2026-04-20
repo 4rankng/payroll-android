@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -50,6 +51,8 @@ fun FlexiblePayScreen(
     if (state.showNotificationSheet) {
         NotificationSheet(
             notifications = state.notifications,
+            unreadCount = state.unreadCount,
+            isLoading = false,
             onDismiss = { viewModel.showNotificationSheet(false) },
             onMarkRead = { viewModel.markNotificationRead(it) },
             onMarkAllRead = { viewModel.markAllRead() }
@@ -62,7 +65,7 @@ fun FlexiblePayScreen(
             onSubmit = { cur, new -> viewModel.changePassword(cur, new) },
             isLoading = state.isChangingPassword,
             error = state.passwordError,
-            success = state.passwordSuccess
+            onSuccess = state.passwordSuccess
         )
     }
 
@@ -261,7 +264,7 @@ private fun HeaderBar(
             var menuExpanded by remember { mutableStateOf(false) }
             Box {
                 IconButton(onClick = { menuExpanded = true }) {
-                    AvatarInitials(name = name, size = 32.dp)
+                    AvatarInitials(name = name, modifier = Modifier.size(32.dp))
                 }
                 DropdownMenu(
                     expanded = menuExpanded,

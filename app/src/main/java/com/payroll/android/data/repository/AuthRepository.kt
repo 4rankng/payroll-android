@@ -4,6 +4,7 @@ import com.payroll.android.data.local.TokenManager
 import com.payroll.android.data.remote.ApiEndpoints
 import com.payroll.android.data.remote.dto.*
 import com.payroll.android.domain.repository.AuthRepository
+import kotlinx.coroutines.flow.firstOrNull
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -27,6 +28,6 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun isLoggedIn(): Boolean {
-        return kotlinx.coroutines.flow.firstOrNull(tokenManager.token) != null
+        return tokenManager.token.firstOrNull() != null
     }
 }

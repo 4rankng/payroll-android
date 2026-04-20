@@ -46,7 +46,7 @@ fun TimesheetScreen(
             isLoading = false,
             onDismiss = { viewModel.showNotificationSheet(false) },
             onMarkRead = viewModel::markNotificationRead,
-            onMarkAllRead = viewModel.markAllRead
+            onMarkAllRead = { viewModel.markAllRead() }
         )
     }
     if (state.showPasswordSheet) {
@@ -98,7 +98,9 @@ fun TimesheetScreen(
 
                     // Timesheet entries grouped by date
                     val grouped = state.timesheetEntries.groupBy { it.date }
-                    items(entries = grouped.entries.toList(), key = { it.key }) { (date, entries) ->
+                    items(count = grouped.size, key = { i -> grouped.keys.elementAt(i) }) { i ->
+                        val date = grouped.keys.elementAt(i)
+                        val entries = grouped[date] ?: emptyList()
                         DayCard(date = date, entries = entries)
                     }
 
