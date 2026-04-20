@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       api_base_url:
-        description: 'API Base URL (e.g. https://api.example.com/api/v1)'
+        description: 'API Base URL (e.g. https://tingting.vip/api/v1)'
         required: false
-        default: ''
+        default: 'https://tingting.vip/api/v1'
 
 jobs:
   build:
@@ -29,9 +29,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build Debug APK
-        run: gradle assembleDebug -PAPI_BASE_URL="${{ github.event.inputs.api_base_url || vars.API_BASE_URL || 'http://10.0.2.2:8080/api/v1' }}"
-        env:
-          API_BASE_URL: ${{ github.event.inputs.api_base_url || vars.API_BASE_URL || 'http://10.0.2.2:8080/api/v1' }}
+        run: gradle assembleDebug -PAPI_BASE_URL="${{ github.event.inputs.api_base_url || vars.API_BASE_URL || 'https://tingting.vip/api/v1' }}"
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
@@ -54,7 +52,7 @@ jobs:
           body: |
             Build from commit ${{ github.sha }}
             Date: ${{ steps.info.outputs.date }}
-            API: ${{ github.event.inputs.api_base_url || vars.API_BASE_URL || 'http://10.0.2.2:8080/api/v1' }}
+            API: ${{ github.event.inputs.api_base_url || vars.API_BASE_URL || 'https://tingting.vip/api/v1' }}
 
             ## Cài đặt
             1. Tải file APK bên dưới

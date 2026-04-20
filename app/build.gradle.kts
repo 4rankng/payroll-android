@@ -20,7 +20,7 @@ android {
 
     defaultConfig {
         val apiUrl = project.findProperty("API_BASE_URL") as? String
-            ?: "http://10.0.2.2:8080/api/v1"
+            ?: "https://tingting.vip/api/v1"
         buildConfigField("String", "API_BASE_URL", "\"$apiUrl\"")
     }
 
