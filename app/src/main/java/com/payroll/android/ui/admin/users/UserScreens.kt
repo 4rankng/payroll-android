@@ -1,6 +1,7 @@
 package com.payroll.android.ui.admin.users
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -27,6 +28,7 @@ fun UserListScreen(
     LaunchedEffect(Unit) { viewModel.loadAll() }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(title = { Text("Người dùng", fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = White),
@@ -101,6 +103,7 @@ fun UserFormScreen(
     LaunchedEffect(state.success) { if (state.success) onBack() }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(title = { Text(if (state.isEditing) "Sửa người dùng" else "Thêm người dùng", fontWeight = FontWeight.Bold) },
                 navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, null) } },

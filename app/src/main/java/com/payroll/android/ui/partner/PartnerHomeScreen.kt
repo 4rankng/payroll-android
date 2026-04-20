@@ -1,6 +1,7 @@
 package com.payroll.android.ui.partner
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -19,6 +20,7 @@ import com.payroll.android.ui.partner.employees.PartnerEmployeeViewModel
 import com.payroll.android.ui.admin.more.PartnerMoreScreen
 import com.payroll.android.ui.components.PartnerBottomBar
 import com.payroll.android.ui.navigation.Route
+import com.payroll.android.ui.theme.*
 
 @Composable
 fun PartnerHomeScreen(
@@ -28,7 +30,7 @@ fun PartnerHomeScreen(
 
     Scaffold(
         bottomBar = { PartnerBottomBar(navController) },
-        containerColor = androidx.compose.ui.graphics.Color.Transparent
+        containerColor = Gray50
     ) { padding ->
         NavHost(
             navController = navController,

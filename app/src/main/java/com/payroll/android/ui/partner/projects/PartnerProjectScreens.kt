@@ -1,6 +1,7 @@
 package com.payroll.android.ui.partner.projects
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -24,6 +25,7 @@ fun PartnerProjectListScreen(
     LaunchedEffect(Unit) { viewModel.loadProjects() }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = { TopAppBar(title = { Text("Dự án", fontWeight = FontWeight.Bold) }, colors = TopAppBarDefaults.topAppBarColors(containerColor = White)) },
         containerColor = Gray50
     ) { padding ->
@@ -70,6 +72,7 @@ fun PartnerProjectDetailScreen(
     LaunchedEffect(projectId) { viewModel.loadDetail(projectId) }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(
                 title = { Text(state.selectedProject?.name ?: "Chi tiết dự án", fontWeight = FontWeight.Bold) },

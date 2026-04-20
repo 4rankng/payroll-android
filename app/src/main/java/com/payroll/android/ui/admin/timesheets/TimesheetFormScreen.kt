@@ -1,6 +1,7 @@
 package com.payroll.android.ui.admin.timesheets
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -25,6 +26,7 @@ fun TimesheetFormScreen(
     LaunchedEffect(state.success) { if (state.success) onBack() }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(
                 title = { Text(if (state.isEditing) "Sửa chấm công" else "Thêm chấm công", fontWeight = FontWeight.Bold) },

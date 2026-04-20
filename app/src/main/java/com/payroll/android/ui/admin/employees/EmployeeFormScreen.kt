@@ -1,6 +1,7 @@
 package com.payroll.android.ui.admin.employees
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -136,6 +137,7 @@ fun EmployeeFormScreen(
     }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(
                 title = { Text(if (state.isEditing) "Sửa nhân viên" else "Thêm nhân viên", fontWeight = FontWeight.Bold) },

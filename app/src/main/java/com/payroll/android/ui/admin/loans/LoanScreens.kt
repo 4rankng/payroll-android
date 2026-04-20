@@ -1,6 +1,7 @@
 package com.payroll.android.ui.admin.loans
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -27,6 +28,7 @@ fun LoanListScreen(
     LaunchedEffect(Unit) { viewModel.loadAll() }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(title = { Text("Khoản vay", fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = White),
@@ -103,6 +105,7 @@ fun LoanDetailScreen(
     LaunchedEffect(loanId) { if (loan != null) viewModel.loadDetail(loan) }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(title = { Text("Chi tiết khoản vay", fontWeight = FontWeight.Bold) },
                 navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, null) } },
@@ -178,6 +181,7 @@ fun LoanFormScreen(
     LaunchedEffect(state.success) { if (state.success) onBack() }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(title = { Text("Thêm khoản vay", fontWeight = FontWeight.Bold) },
                 navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, null) } },

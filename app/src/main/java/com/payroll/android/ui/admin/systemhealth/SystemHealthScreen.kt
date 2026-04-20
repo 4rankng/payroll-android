@@ -1,6 +1,7 @@
 package com.payroll.android.ui.admin.systemhealth
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -23,6 +24,7 @@ fun SystemHealthScreen(
     LaunchedEffect(Unit) { viewModel.loadAll() }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(title = { Text("Sức khỏe hệ thống", fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = White),

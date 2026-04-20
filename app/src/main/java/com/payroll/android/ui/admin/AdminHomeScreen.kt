@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -41,6 +42,7 @@ import com.payroll.android.ui.admin.systemhealth.SystemHealthScreen
 import com.payroll.android.ui.admin.systemhealth.SystemHealthViewModel
 import com.payroll.android.ui.components.AdminBottomBar
 import com.payroll.android.ui.navigation.Route
+import com.payroll.android.ui.theme.*
 
 @Composable
 fun AdminHomeScreen(
@@ -50,7 +52,7 @@ fun AdminHomeScreen(
 
     Scaffold(
         bottomBar = { AdminBottomBar(navController) },
-        containerColor = androidx.compose.ui.graphics.Color.Transparent
+        containerColor = Gray50
     ) { padding ->
         NavHost(
             navController = navController,

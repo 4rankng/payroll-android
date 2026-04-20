@@ -2,6 +2,7 @@ package com.payroll.android.ui.admin.timesheets
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -27,6 +28,7 @@ fun TimesheetListScreen(
     var showDeleteConfirm by remember { mutableStateOf<Int?>(null) }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(
                 title = { Text("Chấm công", fontWeight = FontWeight.Bold) },

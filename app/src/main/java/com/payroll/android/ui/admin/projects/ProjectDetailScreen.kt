@@ -1,6 +1,7 @@
 package com.payroll.android.ui.admin.projects
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -28,6 +29,7 @@ fun ProjectDetailScreen(
     LaunchedEffect(projectId) { viewModel.loadDetail(projectId) }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             TopAppBar(
                 title = { Text(state.project?.name ?: "Chi tiết dự án", fontWeight = FontWeight.Bold) },
